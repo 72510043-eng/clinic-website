@@ -476,7 +476,7 @@ input:checked + .slider:before { transform: translateX(18px); }
   height: 60vh; /* جعلناها 60vh لتبدو أفضل على الموبايل */
   
   /* الخلفية */
- background-image: url('./access/pic1.jpg');
+ 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -617,18 +617,27 @@ input:checked + .slider:before { transform: translateX(18px); }
 
 /* --- التجاوب مع الموبايل --- */
 @media (max-width: 768px) {
+  /* 1. Force the page to stay inside the screen boundaries with 20px padding on the sides */
   .contact-page {
-    grid-template-columns: 1fr; /* تحويل الشبكة إلى عمود واحد */
-    padding: 30px 20px; /* تقليل الهوامش لتناسب الموبايل */
-    gap: 40px; /* تقليل المسافة بين المعلومات والفورم */
+    grid-template-columns: 1fr !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
   }
 
-  .contact-info h1 {
-    font-size: 2rem; /* تصغير حجم الخط للعناوين */
+  /* 2. Force the form to stay inside the page */
+  .contact-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  .social-links {
-    justify-content: center; /* توسيط روابط التواصل في الموبايل */
+  /* 3. Force the inputs to NEVER exceed the form width */
+  .contact-form input, 
+  .contact-form textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important; /* This includes the 15px padding inside the 100% width */
   }
 }
 
@@ -870,10 +879,9 @@ h3 {
 
 .stats-container {
   display: grid;
-  /* 🌟 This line automatically creates columns that wrap perfectly without media queries */
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
-  padding: 60px 5%; /* Using % padding keeps it safe from screen edges */
+  padding: 60px 5%; 
   max-width: 1100px;
   margin: 0 auto;
   position: relative;
@@ -885,9 +893,9 @@ h3 {
 .stat-card {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px); /* Safari support */
-  padding: 40px 24px; /* Slightly more breathable top/bottom padding */
-  border-radius: 20px; /* More modern rounded corners */
+  -webkit-backdrop-filter: blur(8px); 
+  padding: 40px 24px; 
+  border-radius: 20px; 
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: 0 10px 30px rgba(37, 99, 235, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
@@ -901,20 +909,20 @@ h3 {
 .stat-card:hover {
   transform: translateY(-8px);
   background: #ffffff;
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12); /* Slightly boosted for pop */
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12); 
   border-color: rgba(37, 99, 235, 0.25);
 }
 
 /* Number Styling */
 .stat-number {
-  font-size: 3.2rem; /* Enhanced visibility */
+  font-size: 3.2rem; 
   font-weight: 800;
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0 0 12px 0;
   letter-spacing: -1.5px;
-  line-height: 1; /* Fixes any weird hidden height issues */
+  line-height: 1; 
 }
 
 /* Label Styling */
@@ -928,13 +936,13 @@ h3 {
 }
 
 /* ==========================================================================
-    Responsive Design Updates
+    Responsive Design Updates (Clean & Unified)
    ========================================================================== */
 
-/* For Tablets and Smaller Laptops (max-width: 992px) */
+/* Tablets */
 @media (max-width: 992px) {
   .stats-container {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adaptive card sizes */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 20px;
     padding: 40px 4%;
   }
@@ -948,17 +956,18 @@ h3 {
   }
 }
 
-/* For Mobile Phones (max-width: 576px) */
+/* Mobile Phones (Zabtna el-Spaces 100% metel ma baddak) */
 @media (max-width: 576px) {
   .stats-container {
-    grid-template-columns: 1fr; /* Force exactly one clean card per row */
+    grid-template-columns: 1fr; 
     gap: 16px;
-    padding: 30px 24px; /* Generates beautiful breathing room on mobile sides */
+    padding: 30px 20px !important; /* 🔥 Space equal 3al yamin wal-shmal perfectly */
   }
 
   .stat-card {
-    width: 100%; /* Spans naturally without hardcoded limits */
-    max-width: 100%;
+    width: 100% !important; 
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     padding: 26px 20px;
   }
 
@@ -969,4 +978,10 @@ h3 {
   .stat-label {
     font-size: 0.95rem;
   }
-}
+}    
+
+
+
+
+
+
